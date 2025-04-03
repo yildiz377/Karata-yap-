@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url(https://i.hizliresim.com/drl072k.jpeg?_gl=1*1wfyv8*_ga*MTc1NDM3MDk2Mi4xNzQzNjc3MjA4*_ga_M9ZRXYS2YN*MTc0MzY8NjY0OC4yLjEuMTc0MzY4NzE5NS4UzLjAuMA);
+            background-image: url(https://i.hizliresim.com/drl072k.jpeg?_gl=1*1wfyv8*_ga*MTc1NDM3MDk2Mi4xNzQzNjc3MjA4*_ga_M9ZRXYS2YN*MTc0MzY4NjY0OC4yLjEuMTc0MzY4NzE5NS4UzLjAuMA);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -104,6 +104,22 @@
             justify-content: space-between;
             width: 100%;
         }
+        #contact-info {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 51;
+            width: 250px;
+        }
+
+        #contact-info.show {
+            display: block;
+        }
 
     </style>
 </head>
@@ -135,13 +151,18 @@
             <nav class="block">
                 <ul class="space-y-4">
                     <li><a href="#anasayfa" class="block text-lg text-white hover:text-blue-300">Ana Sayfa</a></li>
-                    <li><a href="#iletisim" class="block text-lg text-white hover:text-blue-300">İletişim</a></li>
+                    <li><a href="https://www.google.com/maps/place/Maden,+Tepe+%C3%9Cst%C3%BC+Sk.+No:1,+34450+Sar%C4%B1yer%2F%C4%B0stanbul" target="_blank" class="block text-lg text-white hover:text-blue-300">İletişim</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 
     <div id="overlay"></div>
+    <div id="contact-info">
+        <p><b>Adres:</b> Maden, Tepe Üstü Sk. No:1, 34450 Sarıyer/İstanbul</p>
+        <p><b>Telefon:</b> <a href="tel:05551234567">0555 123 45 67</a></p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m9!1d752.710593414942!2d29.061738792731926!3d41.15278789999999!2m2!1d29.061738792731926!2d41.15278789999999!3m5!1m2!1s0x4c291b59f2851d3b%3A0x3141592653589793!2sTepe%20%C3%9Cst%C3%BC%20Sk.%20No%3A1%2C%2034450%20Sar%C4%B1yer%2F%C4%B0stanbul!3m1!1s0x4c291b59f2851d3b%3A0x3141592653589793!5e0!3m2!1str!2str!4v1706771329285!5m2!1str!2str" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
     <script>
         const menuButton = document.getElementById('menu-button');
@@ -151,24 +172,29 @@
         const navLinks = document.querySelectorAll('header nav a');
         const sections = document.querySelectorAll('section');
         const overlay = document.getElementById('overlay');
-        const iletisimLink = document.querySelector('a[href="#iletisim"]'); // İletişim linkini seç
+        const iletisimLink = document.querySelector('a[href="#iletisim"]');
+        const contactInfo = document.getElementById('contact-info');
 
         function toggleMobileMenu() {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
+            contactInfo.classList.remove('show');
         }
 
         menuButton.addEventListener('click', toggleMobileMenu);
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', toggleMobileMenu);
         });
-        // İletişim linkine de click eventi ekle
-        iletisimLink.addEventListener('click', toggleMobileMenu);
+        iletisimLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "https://www.google.com/maps/place/Maden,+Tepe+%C3%9Cst%C3%BC+Sk.+No:1,+34450+Sar%C4%B1yer%2F%C4%B0stanbul";
+        });
 
         document.addEventListener('click', (event) => {
-            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== menuButton) {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== menuButton && !contactInfo.contains(event.target) && event.target !== iletisimLink) {
                 toggleMobileMenu();
+                contactInfo.classList.remove('show');
             }
         });
 
