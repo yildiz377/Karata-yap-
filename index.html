@@ -3,51 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sineksiz Bir Yaşam İçin</title>
+    <title>KARATAŞ YAPI SİNEKLİK DÜNYASI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-image: url(https://i.hizliresim.com/1huexqn.jpg); /* Arka plan resmini ayarla */
-            background-size: cover; /* Resmi tüm ekranı kaplayacak şekilde ayarla */
-            background-position: center; /* Resmi ortala */
-            background-repeat: no-repeat; /* Resmi tekrar etme */
-            background-color: #f4f4f4; /* Fallback renk */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url(https://i.hizliresim.com/3a1r22m.jpeg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        header { background: #333; color: white; padding: 15px; text-align: center; }
-        nav { text-align: center; padding: 10px; background: #555; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; }
-        .container { width: 80%; margin: auto; padding: 20px; background: white; }
-        footer { background: #333; color: white; text-align: center; padding: 10px; position: fixed; width: 100%; bottom: 0; }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #menu-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            padding: 0;
+            margin-right: auto; /* Butonu sola yaslar */
+            margin-left: 10px;
+        }
+        #menu-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        #mobile-menu {
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            position: fixed;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        #mobile-menu-content {
+            padding-top: 60px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #close-menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
     </style>
 </head>
-<body>
-    <header>
-        <h1>Karataş Yapı Sineklik Dünyası</h1>
+<body class="bg-blue-100">
+    <header class="bg-blue-500 bg-opacity-80 text-white py-4 shadow-md sticky top-0 z-10 w-full">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <div id="menu-button" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </div>
+            <h1 class="text-2xl font-semibold text-center" style="font-size: 1.25em;">KARATAŞ YAPI SİNEKLİK DÜNYASI</h1>
+        </div>
     </header>
-    <nav>
-        <a href="#ana-sayfa">Ana Sayfa</a>
-        <a href="#hakkimizda">Hakkımızda</a>
-        <a href="#iletisim">İletişim</a>
-    </nav>
-    <div class="container" id="ana-sayfa">
-        <h2>Hoş Geldiniz</h2>
-        <p>Yılların deneyimiyle sineklik ve demir doğrama hizmeti sunuyoruz. Kaliteli işçilik, uygun fiyat!</p>
-        <img src="sineklik-demir-dograma.jpg" alt="Sineklik ve Demir Doğrama" style="width:100%;">
-    </div>
-    <div class="container" id="hakkimizda">
-        <h2></h2>
-        <p></p>
-    </div>
-    <div class="container" id="iletisim">
-        <h2>İletişim</h2>
-        <p>Adres: Maden Mahallesi Güldeste Çıkmazı No:3 Sarıyer İstanbul</p>
-        <p>Telefon: 0542 311 85637</p>
-        <p>WhatsApp: <a href="https://wa.me/+905388325497">Bize Ulaşın</a></p>
-    </div>
-    <footer>
-    
+
+    <main class="container">
+        <div class="bg-white bg-opacity-80 rounded-lg shadow-lg p-6 text-center" style="max-width: 80%; margin-top: 0;">
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 w-full">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 Karataş Yapı Sineklik Dünyası. Tüm hakları saklıdır.</p>
+        </div>
     </footer>
+
+    <div id="mobile-menu" class="hidden">
+        <div id="mobile-menu-content">
+            <div id="close-menu-button">Kapat</div>
+            <nav class="block">
+                <ul class="space-y-4">
+                    <li><a href="#anasayfa" class="block text-lg text-white hover:text-blue-300">Ana Sayfa</a></li>
+                    <li><a href="#iletisim" class="block text-lg text-white hover:text-blue-300">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        const navLinks = document.querySelectorAll('header nav a');
+        const sections = document.querySelectorAll('section');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
+        }
+
+        menuButton.addEventListener('click', toggleMobileMenu);
+        closeMenuButton.addEventListener('click', toggleMobileMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== menuButton) {
+                toggleMobileMenu();
+            }
+        });
+
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
