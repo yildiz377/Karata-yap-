@@ -151,7 +151,7 @@
             <nav class="block">
                 <ul class="space-y-4">
                     <li><a href="#anasayfa" class="block text-lg text-white hover:text-blue-300">Ana Sayfa</a></li>
-                    <li><a href="https://www.google.com/maps/place/Maden,+Tepe+%C3%9Cst%C3%BC+Sk.+No:1,+34450+Sar%C4%B1yer%2F%C4%B0stanbul" target="_blank" class="block text-lg text-white hover:text-blue-300">İletişim</a></li>
+                    <li><a href="iletisim.html" class="block text-lg text-white hover:text-blue-300">İletişim</a></li>
                 </ul>
             </nav>
         </div>
@@ -172,7 +172,7 @@
         const navLinks = document.querySelectorAll('header nav a');
         const sections = document.querySelectorAll('section');
         const overlay = document.getElementById('overlay');
-        const iletisimLink = document.querySelector('a[href="#iletisim"]');
+        const iletisimLink = document.querySelector('a[href="iletisim.html"]');
         const contactInfo = document.getElementById('contact-info');
 
         function toggleMobileMenu() {
@@ -187,8 +187,8 @@
             link.addEventListener('click', toggleMobileMenu);
         });
         iletisimLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "https://www.google.com/maps/place/Maden,+Tepe+%C3%9Cst%C3%BC+Sk.+No:1,+34450+Sar%C4%B1yer%2F%C4%B0stanbul";
+            event.preventDefault(); // Sayfa yenilenmesini engelle
+            window.location.href = "iletisim.html"; // "iletisim.html" adresine git
         });
 
         document.addEventListener('click', (event) => {
