@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url(https://i.hizliresim.com/3a1r22m.jpeg);
+            background-image: url(https://i.hizliresim.com/drl072k.jpeg?_gl=1*1wfyv8*_ga*MTc1NDM3MDk2Mi4xNzQzNjc3MjA4*_ga_M9ZRXYS2YN*MTc0MzY8NjY0OC4yLjEuMTc0MzY4NzE5NS4UzLjAuMA);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -28,6 +28,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 70px;
+            padding-top: 0;
+            padding-bottom: 0;
+            min-height: 70px;
         }
         #menu-button {
             display: flex;
@@ -37,8 +41,9 @@
             height: 40px;
             cursor: pointer;
             padding: 0;
-            margin-right: auto; /* Butonu sola yaslar */
-            margin-left: 10px;
+            margin-right: auto;
+            margin-left: -25px;
+            margin-top: -3px;
         }
         #menu-button svg {
             width: 24px;
@@ -50,7 +55,7 @@
             left: 0;
             width: 250px;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #333;
             color: white;
             position: fixed;
             z-index: 50;
@@ -78,17 +83,39 @@
             color: white;
         }
 
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            display: none;
+        }
+
+        #overlay.active {
+            display: block;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body class="bg-blue-100">
-    <header class="bg-blue-500 bg-opacity-80 text-white py-4 shadow-md sticky top-0 z-10 w-full">
-        <div class="container mx-auto px-4 flex items-center justify-between">
-            <div id="menu-button" class="md:hidden">
+    <header class="bg-blue-500 bg-opacity-80 text-white py-4 shadow-md sticky top-0 z-10 w-full" style="height: 70px;">
+        <div class="container mx-auto px-4 header-content" style="align-items: center;">
+            <div id="menu-button" class="md:hidden" style="margin-top: 0;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </div>
-            <h1 class="text-2xl font-semibold text-center" style="font-size: 1.25em;">KARATAŞ YAPI SİNEKLİK DÜNYASI</h1>
+            <h1 class="text-2xl font-semibold text-center" style="font-size: 1.25em; line-height: 1; margin-top: -31px;">KARATAŞ YAPI SİNEKLİK DÜNYASI</h1>
         </div>
     </header>
 
@@ -105,7 +132,6 @@
 
     <div id="mobile-menu" class="hidden">
         <div id="mobile-menu-content">
-            <div id="close-menu-button">Kapat</div>
             <nav class="block">
                 <ul class="space-y-4">
                     <li><a href="#anasayfa" class="block text-lg text-white hover:text-blue-300">Ana Sayfa</a></li>
@@ -115,6 +141,8 @@
         </div>
     </div>
 
+    <div id="overlay"></div>
+
     <script>
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -122,17 +150,21 @@
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         const navLinks = document.querySelectorAll('header nav a');
         const sections = document.querySelectorAll('section');
+        const overlay = document.getElementById('overlay');
+        const iletisimLink = document.querySelector('a[href="#iletisim"]'); // İletişim linkini seç
 
         function toggleMobileMenu() {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
 
         menuButton.addEventListener('click', toggleMobileMenu);
-        closeMenuButton.addEventListener('click', toggleMobileMenu);
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', toggleMobileMenu);
         });
+        // İletişim linkine de click eventi ekle
+        iletisimLink.addEventListener('click', toggleMobileMenu);
 
         document.addEventListener('click', (event) => {
             if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== menuButton) {
