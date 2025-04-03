@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url(https://i.hizliresim.com/drl072k.jpeg?_gl=1*1wfyv8*_ga*MTc1NDM3MDk2Mi4xNzQzNjc3MjA4*_ga_M9ZRXYS2YN*MTc0MzY4NjY0OC4yLjEuMTc0MzY4NzE5NS4UzLjAuMA);
+            background-image: url(https://i.hizliresim.com/drl072k.jpeg?_gl=1*1wfyv8*_ga*MTc1NDM3MDk2Mi4xNzQzNjc3MjA4*_ga_M9ZRXYS2YN*MTc0MzY4NjY0OC4yLjEuMTc0MzY4NzE5NS.UzLjAuMA);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -17,6 +17,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .container {
             flex-grow: 1;
             display: flex;
@@ -187,8 +188,13 @@
             link.addEventListener('click', toggleMobileMenu);
         });
         iletisimLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Sayfa yenilenmesini engelle
-            window.location.href = "iletisim.html"; // "iletisim.html" adresine git
+            event.preventDefault();
+            // Yeni: İletişim sayfasını aç
+            const newWindow = window.open('iletisim.html', '_blank');
+            if (!newWindow) {
+                alert('Lütfen açılır pencerelere izin verin.');
+            }
+
         });
 
         document.addEventListener('click', (event) => {
